@@ -1,0 +1,21 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="show-app.html"></head><body><dom-module id="show-video-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .video-frame {
+        background-color: black;
+        height: calc(100vh-64px);
+      }
+    </style>
+
+    <div class="video-frame">
+      <google-youtube width="100%" height="calc(100vh - 64px)" video-id="[[videoId]]" rel="0" start="5" autoplay="1"></google-youtube>
+    </div>
+
+  </template>
+
+  <script>Polymer({is:"show-video-page",properties:{subroute:Object,videoId:{type:String,computed:"_getVideoId(subroute)"},active:{type:Boolean,observer:"_activeDidChange"}},_getVideoId:function(e){return e&&e.path?e.path.substr(1):""},_activeDidChange:function(e){e&&this.fire("setup-toolbar",{leftItemIcon:"arrow-back",leftItemClickAction:function(){window.history.back()}})}});</script>
+</dom-module>
+</body></html>
